@@ -31,7 +31,7 @@ jobs:
         run: npm test
         working-directory: node-project
 
-      # Step 5: Build project
+      # Step 5: Build project and ensure build folder exists
       - name: Build project
         run: |
           npm run build
