@@ -19,3 +19,4 @@ aws lambda list-functions
 test
 test 2u
 test
+test
