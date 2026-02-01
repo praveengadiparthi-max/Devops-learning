@@ -43,6 +43,7 @@ jobs:
             echo "Build placeholder file" > build/output.txt
           else
             echo "Build folder exists, using existing one."
+          fi
 
       # Step 6: Upload build artifact
       - name: Upload build artifact
