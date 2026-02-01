@@ -1,9 +1,8 @@
 name: Deploy Node.js to EC2
 
-# Trigger this workflow after the build workflow succeeds
 on:
   workflow_run:
-    workflows: ["Node.js CI Pipeline"]   # name of your build workflow
+    workflows: ["Node.js CI Pipeline"]
     types:
       - completed
 
@@ -13,18 +12,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout repo (needed for artifacts download)
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Download build artifact
       - name: Download build artifact
         uses: actions/download-artifact@v4
         with:
           name: node-build
           path: ./node-build
 
-      # Step 3: Deploy to EC2 using SCP
       - name: Deploy to EC2
         uses: appleboy/scp-action@v0.1.6
         with:
@@ -34,7 +30,6 @@ jobs:
           source: "./node-build/*"
           target: "/home/ubuntu/node-app/"
 
-      # Step 4: Optionally restart the app on EC2
       - name: Restart Node.js app on EC2
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -43,7 +38,5 @@ jobs:
           key: ${{ secrets.EC2_KEY }}
           script: |
             cd /home/ubuntu/node-app
-            # Kill existing process (optional)
             pkill -f "node index.js" || true
-            # Start app in background
             nohup node index.js > app.log 2>&1 &
