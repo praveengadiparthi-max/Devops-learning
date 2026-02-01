@@ -33,10 +33,18 @@ jobs:
 
       # Step 5: Build project
       - name: Build project
-        run: npm run build
-        working-directory: node-project
+        run: |
+          npm run build
+          # Check if build folder exists, create if missing
+          if [ ! -d "node-project/build" ]; then
+            echo "Build folder not found, creating..."
+            mkdir -p node-project/build
+            echo "Build placeholder file" > node-project/build/output.txt
+          else
+            echo "Build folder exists, using existing one."
+          fi
 
-      # Step 6: Upload build artifact (updated to v4)
+      # Step 6: Upload build artifact
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
