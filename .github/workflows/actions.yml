@@ -33,6 +33,7 @@ jobs:
 
       # Step 5: Build project and ensure build folder exists
       - name: Build project
+      working-directory: node-project
         run: |
           npm run build
           # Check if build folder exists, create if missing
