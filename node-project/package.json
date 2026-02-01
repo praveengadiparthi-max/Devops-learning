@@ -1,0 +1,13 @@
+{
+  "name": "devops-learning",
+  "version": "1.0.0",
+  "description": "Sample Node.js project for CI/CD learning",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"No tests yet\" && exit 0",
+    "build": "echo \"Build successful\""
+  },
+  "author": "Praveen Gadiparthi",
+  "license": "MIT"
+}
