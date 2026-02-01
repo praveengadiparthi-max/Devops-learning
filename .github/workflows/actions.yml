@@ -4,7 +4,12 @@ on:
   push:
     branches:
       - main
+    # Trigger only if files inside node-project/ change
+    paths:
+      - 'node-project/**'
   pull_request:
+    paths:
+      - 'node-project/**'
 
 jobs:
   build-and-test:
