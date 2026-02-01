@@ -17,5 +17,5 @@ aws ec2 describe-instances
 aws lambda list-functions
 
 test
-test 2
+test 2u
 test
