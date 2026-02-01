@@ -33,17 +33,16 @@ jobs:
 
       # Step 5: Build project and ensure build folder exists
       - name: Build project
-      working-directory: node-project
+        working-directory: node-project
         run: |
           npm run build
           # Check if build folder exists, create if missing
-          if [ ! -d "node-project/build" ]; then
+          if [ ! -d "build" ]; then
             echo "Build folder not found, creating..."
-            mkdir -p node-project/build
-            echo "Build placeholder file" > node-project/build/output.txt
+            mkdir -p build
+            echo "Build placeholder file" > build/output.txt
           else
             echo "Build folder exists, using existing one."
-          fi
 
       # Step 6: Upload build artifact
       - name: Upload build artifact
