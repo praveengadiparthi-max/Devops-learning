@@ -1,31 +1,32 @@
-name: CI Pipeline
+name: Node.js CI Pipeline
 
-on: [push]
-
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout source code
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      # Step 2: Setup Node.js (example)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: 18
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
+        working-directory: node-project
 
-      # Step 4: Run tests
       - name: Run tests
         run: npm test
+        working-directory: node-project
 
-      # Step 5: Build project
-      - name: Build
+      - name: Build project
         run: npm run build
+        working-directory: node-project
